@@ -1,0 +1,76 @@
+<div class="page-container">
+  <h1 class="page-title">Cifrado Simétrico</h1>
+  <p class="page-subtitle">Cifra y descifra archivos con AES-256-GCM usando una contraseña. Todo ocurre en tu navegador.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Cifrar archivo
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Seleccionar archivo</label>
+        <input type="file" (change)="onFileEncryptSelected($event)" class="form-input-file" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Contraseña</label>
+        <input type="password" [(ngModel)]="encryptPass" placeholder="Escribe una contraseña segura (mín. 6 caracteres)" class="form-input" />
+      </div>
+
+      <div class="form-group">
+        <label class="checkbox-group">
+          <input type="checkbox" [(ngModel)]="encryptAutoDownload" />
+          Descargar automáticamente el archivo cifrado
+        </label>
+      </div>
+
+      <button (click)="encrypt()" class="btn btn-primary" style="width:100%">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Cifrar y descargar
+      </button>
+
+      <div *ngIf="encryptStatus" class="status-msg" [ngClass]="{
+        'info': encryptStatus.includes('Seleccion') || encryptStatus.includes('Leyendo') || encryptStatus.includes('Derivando') || encryptStatus.includes('Cifrando'),
+        'success': encryptStatus.includes('correctamente'),
+        'error': encryptStatus.includes('Error') || encryptStatus.includes('Selecciona') || encryptStatus.includes('mínimo')
+      }">
+        <span *ngIf="encryptStatus.includes('Leyendo') || encryptStatus.includes('Derivando') || encryptStatus.includes('Cifrando')" class="spinner"></span>
+        {{ encryptStatus }}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Descifrar archivo
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Seleccionar archivo cifrado (.enc)</label>
+        <input type="file" (change)="onFileDecryptSelected($event)" class="form-input-file" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Contraseña</label>
+        <input type="password" [(ngModel)]="decryptPass" placeholder="Introduce la contraseña utilizada" class="form-input" />
+      </div>
+
+      <button (click)="decrypt()" class="btn btn-success" style="width:100%">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Descifrar y descargar
+      </button>
+
+      <div *ngIf="decryptStatus" class="status-msg" [ngClass]="{
+        'info': decryptStatus.includes('Leyendo') || decryptStatus.includes('Derivando') || decryptStatus.includes('Descifrando'),
+        'success': decryptStatus.includes('correctamente'),
+        'error': decryptStatus.includes('Error') || decryptStatus.includes('inválido') || decryptStatus.includes('incorrecta') || decryptStatus.includes('Debes') || decryptStatus.includes('Selecciona') || decryptStatus.includes('Versión')
+      }">
+        <span *ngIf="decryptStatus.includes('Leyendo') || decryptStatus.includes('Derivando') || decryptStatus.includes('Descifrando')" class="spinner"></span>
+        {{ decryptStatus }}
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,22 @@
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a routerLink="/" class="navbar-brand" (click)="closeMenu()">
+      <img src="https://i.postimg.cc/FF65KBkb/Alexdan-TB.png" class="h-7">
+      <span class="brand-text">Alx<span class="brand-accent">Cript</span></span>
+    </a>
+
+    <button class="menu-toggle" (click)="toggleMenu()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-menu" [class.open]="menuOpen">
+      <ul class="nav-links">
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">Inicio</a></li>
+        <li><a routerLink="/simetrico" routerLinkActive="active" (click)="closeMenu()">Cifrado Simétrico</a></li>
+        <li><a routerLink="/asimetrico" routerLinkActive="active" (click)="closeMenu()">Cifrado Asimétrico</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

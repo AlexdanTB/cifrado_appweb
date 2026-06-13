@@ -1,0 +1,43 @@
+<div class="page-container">
+  <section class="hero">
+    <h1 class="hero-title">Cifrado de Archivos</h1>
+    <p class="hero-subtitle">
+      Plataforma segura de cifrado que opera completamente en tu navegador.
+      Tus archivos y claves nunca salen de tu dispositivo.
+    </p>
+    <div class="hero-actions">
+      <a routerLink="/simetrico" class="btn btn-primary btn-lg">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Cifrado Simétrico
+      </a>
+      <a routerLink="/asimetrico" class="btn btn-outline btn-lg">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Cifrado Asimétrico
+      </a>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon" style="--accent: var(--accent-cyan);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <h3>Cifrado AES-256</h3>
+      <p>Cifrado simétrico de archivos con AES-256-GCM. Protege tus documentos con una contraseña segura.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="--accent: var(--accent-purple);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Claves RSA-4096</h3>
+      <p>Genera pares de claves públicas y privadas RSA de 4096 bits usando OpenPGP para comunicaciones seguras.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="--accent: var(--accent-amber);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+      </div>
+      <h3>100% Local</h3>
+      <p>Todo el procesamiento ocurre en tu navegador. Ningún archivo o clave se envía a ningún servidor.</p>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,73 @@
+<div class="page-container">
+  <h1 class="page-title">Cifrado Asimétrico</h1>
+  <p class="page-subtitle">Genera pares de claves RSA de 4096 bits con OpenPGP para comunicaciones seguras.</p>
+
+  <div class="card card-asimetrico">
+    <div class="card-title">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Generar claves RSA
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Nombre (opcional)</label>
+        <input [(ngModel)]="name" class="form-input" placeholder="Ej: Juan Pérez" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email (opcional)</label>
+        <input [(ngModel)]="email" class="form-input" placeholder="ejemplo@correo.com" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Frase de seguridad (obligatoria)</label>
+      <input [(ngModel)]="passphrase" type="password" class="form-input" placeholder="Introduce una frase secreta segura" />
+      <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.3rem;">
+        La frase protegerá tu clave privada. Guárdala en un lugar seguro.
+      </p>
+    </div>
+
+    <div class="btn-group">
+      <button (click)="generate()" [disabled]="busy || !passphrase" class="btn btn-primary">
+        <span *ngIf="busy" class="spinner"></span>
+        <svg *ngIf="!busy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        {{ busy ? 'Generando...' : 'Generar claves RSA (4096 bits)' }}
+      </button>
+      <button (click)="clear()" class="btn btn-outline" [disabled]="busy">Limpiar</button>
+    </div>
+
+    <div *ngIf="publicKey || privateKey" class="keys-section">
+      <div class="key-block">
+        <div class="key-header">
+          <h3>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Clave pública
+          </h3>
+          <div class="key-actions">
+            <button (click)="download('public.key', publicKey)" class="btn btn-outline btn-sm">Descargar</button>
+            <button (click)="copyToClipboard(publicKey)" class="btn btn-outline btn-sm">Copiar</button>
+          </div>
+        </div>
+        <textarea readonly class="form-input key-textarea" rows="8" [value]="publicKey"></textarea>
+      </div>
+
+      <div class="key-block">
+        <div class="key-header">
+          <h3>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Clave privada (cifrada)
+          </h3>
+          <div class="key-actions">
+            <button (click)="download('private.key', privateKey)" class="btn btn-outline btn-sm">Descargar</button>
+            <button (click)="copyToClipboard(privateKey)" class="btn btn-outline btn-sm">Copiar</button>
+          </div>
+        </div>
+        <textarea readonly class="form-input key-textarea" rows="12" [value]="privateKey"></textarea>
+      </div>
+
+      <div class="info-note">
+        <strong>&#9432; Nota:</strong> Las claves están en formato OpenPGP ASCII-armored. Puedes importarlas en Kleopatra, GPG o cualquier software compatible. Si deseas usar extensión <code>.asc</code>, renombra el archivo al descargar.
+      </div>
+    </div>
+  </div>
+</div>
